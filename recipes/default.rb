@@ -24,10 +24,27 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-# TODO: list of repos inside
+# a manual way to do it, by getting Oracle's rpm
 
+#remote_file 'the rpm file' do
+#  action :create
+#  path "/tmp/whatever"
+#end
+
+
+# upload the gpg key
+cookbook_file '/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql' do
+  action :create
+  source 'RPM-GPG-KEY-mysql'
+end
+
+
+# mysql-connectors-community                                                                                                                                 | 2.5 kB  00:00:00
+# mysql-tools-community                                                                                                                                      | 2.5 kB  00:00:00
+
+# this wasn't working, saying resource yum_repository not available
 %w{
-  mysql-community
+  mysql56-community
   }.each do |repo|
   yum_repository repo do
     description node['yum'][repo]['description']
