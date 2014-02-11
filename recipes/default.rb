@@ -1,48 +1,23 @@
 #
-# Cookbook Name:: yum_mysql_community
-# Recipe:: default
+# Author:: Bryan Taylor (<bcptaylor@gmail.com>)
+# Recipe:: yum_mysql_community::default
 #
-# Copyright (C) 2014 Bryan Taylor
-# 
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
-# without limitation the rights to use, copy, modify, merge, publish,
-# distribute, sublicense, and/or sell copies of the Software, and to
-# permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
-# 
-# The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software.
-# 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
+# see LICENSE
 
-# a manual way to do it, by getting Oracle's rpm
+# Better:
+# - do remote_file with 'http://pgp.mit.edu/pks/lookup?op=get&search=0x8C718D3B5072E1F5'
+# More Better:
+# - download the rpm from Oracle
+# - do package with rpm provider and local file
 
-#remote_file 'the rpm file' do
-#  action :create
-#  path "/tmp/whatever"
-#end
-
-
-# upload the gpg key
 cookbook_file '/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql' do
   action :create
-  source 'RPM-GPG-KEY-mysql'
+  owner 'root'
+  group 'root'
+  mode '0644'
 end
 
 
-# mysql-connectors-community                                                                                                                                 | 2.5 kB  00:00:00
-# mysql-tools-community                                                                                                                                      | 2.5 kB  00:00:00
-
-# this wasn't working, saying resource yum_repository not available
 %w{
   mysql56-community
   }.each do |repo|
