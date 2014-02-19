@@ -54,6 +54,10 @@ test/*
 features/*
 Guardfile
 Procfile
+<<<<<<< HEAD
+=======
+.chef
+>>>>>>> 0.0.3
 
 # SCM #
 #######
@@ -74,6 +78,7 @@ Berksfile
 Berksfile.lock
 cookbooks/*
 tmp
+.berkshelf
 
 # Cookbooks #
 #############

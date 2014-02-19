@@ -12,6 +12,9 @@ end
 
 %w{
   mysql56-community
+  mysql-connectors-community
+  mysql-tools-community
+  mysql57-community-dmr
   }.each do |repo|
   yum_repository repo do
     action :delete

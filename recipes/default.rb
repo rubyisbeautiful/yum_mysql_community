@@ -4,6 +4,7 @@
 #
 # see LICENSE
 
+# TODO: follow steps below to improve how this works
 # Better:
 # - do remote_file with 'http://pgp.mit.edu/pks/lookup?op=get&search=0x8C718D3B5072E1F5'
 # More Better:
@@ -17,10 +18,12 @@ cookbook_file '/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql' do
   mode '0644'
 end
 
-
-%w{
+%w(
   mysql56-community
-  }.each do |repo|
+  mysql-connectors-community
+  mysql-tools-community
+  mysql57-community-dmr
+  ).each do |repo|
   yum_repository repo do
     description node['yum'][repo]['description']
     baseurl node['yum'][repo]['baseurl']

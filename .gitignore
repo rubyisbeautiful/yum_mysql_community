@@ -12,9 +12,10 @@ Berksfile.lock
 Gemfile.lock
 bin/*
 .bundle/*
-
+.chef/
+.berkshelf/
 .kitchen/
 .kitchen.local.yml
-
 .rspec
 .idea
+>>>>>>> 0.0.3
